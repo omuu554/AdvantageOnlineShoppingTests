@@ -74,34 +74,53 @@ class ToolBarClass:
         return self.Get_CartIconItemInfo_Element(index).find_element(By.XPATH, "//label[2]/span")
 
     def Get_UserIconUsername_Element(self):
+        "returns the element of the username after the UserIcon popup is Displayed"
         if(self.driver.find_element(By.CLASS_NAME,"PopUp").is_displayed()):
             return self.driver.find_element(By.NAME, "username")
         self.Get_Usericon_Element().click()
         return self.driver.find_element(By.NAME,"username")
 
     def Get_UserIconPassowrd_Element(self):
+        "returns the element of the password after the UserIcon popup is Displayed"
         if (self.driver.find_element(By.CLASS_NAME, "PopUp").is_displayed()):
             return self.driver.find_element(By.NAME, "password")
         self.Get_Usericon_Element().click()
         return self.driver.find_element(By.NAME,"password")
 
     def Get_UserIconRemCheckBox_Element(self):
+        "returns the element of the Remember me checkbox after the UserIcon popup is Displayed"
         if (self.driver.find_element(By.CLASS_NAME, "PopUp").is_displayed()):
             return self.driver.find_element(By.NAME, "remember_me")
         self.Get_Usericon_Element().click()
         return self.driver.find_element(By.NAME,"remember_me")
 
     def Get_UserIconSignIn_Element(self):
+        "returns the element of the SignIn button after the UserIcon popup is Displayed"
         if (self.driver.find_element(By.CLASS_NAME, "PopUp").is_displayed()):
             return self.driver.find_element(By.ID, "sign_in_btnundefined")
         self.Get_Usericon_Element().click()
         return self.driver.find_element(By.ID,"sign_in_btnundefined")
 
     def Get_UserIconCreateAccount_Element(self):
+        "returns the element of the Create New Account button after the UserIcon popup is Displayed"
         if (self.driver.find_element(By.CLASS_NAME, "PopUp").is_displayed()):
             return self.driver.find_element(By.CLASS_NAME, "create-new-account")
         self.Get_Usericon_Element().click()
         return self.driver.find_element(By.CLASS_NAME, "create-new-account")
+
+    def Get_UserIconSignOut_Element(self):
+        if(self.driver.find_element(By.CSS_SELECTOR,"label[translate='Sign_out'][role='link']").is_displayed()):
+            return self.driver.find_element(By.CSS_SELECTOR,"label[translate='Sign_out'][role='link']")
+        self.Get_Usericon_Element().click()
+        return self.driver.find_element(By.CSS_SELECTOR, "label[translate='Sign_out'][role='link']")
+
+    def IsUserSignedIn(self,username:str):
+        return self.driver.find_element(By.CSS_SELECTOR,"#menuUserLink>span").text == username
+
+    def Wait_UserSignIn(self,username:str):
+        while(not self.IsUserSignedIn(username)):
+            pass
+
 
 
 
