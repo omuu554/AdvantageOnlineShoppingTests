@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-
+import re
 
 
 class ToolBarClass:
@@ -49,9 +49,9 @@ class ToolBarClass:
         "returns the element of the Amount of items cartIcon in the toolbar"
         return self.driver.find_element(By.XPATH, "//tfoot/tr[1]/td/span/label")
 
-    def Get_ItemsAmountInCartSTR(self):
+    def ItemsAmountInCartDigits(self):
         "returns Amount of items in cartIcon, in string form: (x Items)  "
-        return self.Get_ItemsAmountInCart_Element().get_attribute("textContent")
+        return re.sub(r'[^0-9]','',self.Get_ItemsAmountInCart_Element().get_attribute("textContent"))
 
     def Get_CartIconCheckOut_Element(self):
         "returns the element of CheckOut button in the cartIcon in toolbar"
@@ -68,6 +68,9 @@ class ToolBarClass:
     def Get_CartIconQuntity_Element(self,index:int):
         "returns the element of the item Quantity of spacifice item in CartIcon in toolbar in form: QTY: x"
         return self.Get_CartIconItemInfo_Element(index).find_element(By.XPATH, "//a/label[1]")
+
+    def CartIconQuntityDigits(self,index:int):
+        return re.sub(r'[^0-9]','',self.Get_CartIconQuntity_Element(index).text)
 
     def Get_CartIconColor_Element(self,index:int):
         "returns the element of the item color of spacifice item in CartIcon in toolbar in form: all upper case letters"
