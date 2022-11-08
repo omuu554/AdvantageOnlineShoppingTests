@@ -109,15 +109,18 @@ class ToolBarClass:
         return self.driver.find_element(By.CLASS_NAME, "create-new-account")
 
     def Get_UserIconSignOut_Element(self):
+        "returns the element of the SignOut button after UserIcon was Pressed(User Must be Signed In for it to work)"
         if(self.driver.find_element(By.CSS_SELECTOR,"label[translate='Sign_out'][role='link']").is_displayed()):
             return self.driver.find_element(By.CSS_SELECTOR,"label[translate='Sign_out'][role='link']")
         self.Get_Usericon_Element().click()
         return self.driver.find_element(By.CSS_SELECTOR, "label[translate='Sign_out'][role='link']")
 
     def IsUserSignedIn(self,username:str):
+        "returns true if the user is signed in"
         return self.driver.find_element(By.CSS_SELECTOR,"#menuUserLink>span").text == username
 
     def Wait_UserSignIn(self,username:str):
+        "Wait for user to be signed in"
         while(not self.IsUserSignedIn(username)):
             pass
 
