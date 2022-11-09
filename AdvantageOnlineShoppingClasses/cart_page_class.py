@@ -9,25 +9,25 @@ class Cart_Page_Advantage:
         self.driver = driver
 
     def product_name(self, product_location: int):
-        return self.driver.find_element(By.XPATH, f"//thead/../tbody/tr[{product_location}]/td[2]/label")
+        return self.driver.find_element(By.XPATH, f"//div[@id='shoppingCart']/table/tbody/tr[{product_location}]/td[2]/label")
 
     def product_color(self, product_location: int):
-        return self.driver.find_element(By.XPATH, f"//thead/../tbody/tr[{product_location}]/td[4]/span")
+        return self.driver.find_element(By.XPATH, f"//div[@id='shoppingCart']/table/tbody/tr[{product_location}]/td[4]/span")
 
     def product_quantity(self, product_location: int):
-        return self.driver.find_element(By.XPATH, f"//thead/../tbody/tr[{product_location}]/td[5]/label[2]")
+        return self.driver.find_element(By.XPATH, f"//div[@id='shoppingCart']/table/tbody/tr[{product_location}]/td[5]/label[2]")
 
     def units_price(self, product_location: int):
-        return self.driver.find_element(By.XPATH, f"//thead/../tbody/tr[{product_location}]/td[6]/p")
+        return self.driver.find_element(By.XPATH, f"//div[@id='shoppingCart']/table/tbody/tr[{product_location}]/td[6]/p")
 
     def edit_product(self, product_location: int):
-        return self.driver.find_element(By.XPATH, f"//thead/../tbody/tr[{product_location}]/td[6]/span/a[1]")
+        return self.driver.find_element(By.XPATH, f"//div[@id='shoppingCart']/table/tbody/tr[{product_location}]/td[6]/span/a[1]")
 
     def remove_product(self, product_location: int):
-        return self.driver.find_element(By.XPATH, f"//thead/../tbody/tr[{product_location}]/td[6]/span/a[3]")
+        return self.driver.find_element(By.XPATH, f"//div[@id='shoppingCart']/table/tbody/tr[{product_location}]/td[6]/span/a[3]")
 
     def total_price(self):
-        return self.driver.find_element(By.XPATH, "//thead/../tfoot/tr[1]/td[2]/span[2]")
+        return self.driver.find_element(By.XPATH, "//div[@id='shoppingCart']/table/tfoot/tr[1]/td[2]/span[2]")
     def check_Out_Button(self):
         return self.driver.find_element(By.ID, "checkOutButton")
 
