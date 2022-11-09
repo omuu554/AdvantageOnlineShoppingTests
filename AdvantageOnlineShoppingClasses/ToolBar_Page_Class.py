@@ -146,6 +146,17 @@ class ToolBarClass:
         while(not self.IsUserSignedIn(username)):
             pass
 
+    def Get_Location_Element(self):
+        "returns the element of The current location of the user)"
+        return self.driver.find_elements(By.CSS_SELECTOR, ".pages>a")[-1]
+
+    def LocationName(self):
+        "returns the name of the current location of the user(at homepage returns 'HOME'))"
+        try:
+            return self.Get_Location_Element().text
+        except:
+            return "HOME"
+
 
 
 
