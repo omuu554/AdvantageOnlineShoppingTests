@@ -1,6 +1,5 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 import re
 
@@ -47,11 +46,19 @@ class ToolBarClass:
 
     def Get_ItemsAmountInCart_Element(self):
         "returns the element of the Amount of items cartIcon in the toolbar"
-        return self.driver.find_element(By.XPATH, "//tfoot/tr[1]/td/span/label")
+        return self.driver.find_element(By.XPATH, "//tool-tip-cart[@id='toolTipCart']/div/table/tfoot/tr[1]/td[1]/span/label")
 
     def ItemsAmountInCartDigits(self):
-        "returns Amount of items in cartIcon, in string form: (x Items)  "
+        "returns Amount of items in cartIcon "
         return re.sub(r'[^0-9]','',self.Get_ItemsAmountInCart_Element().get_attribute("textContent"))
+
+    def Get_ItemsTotalCostInCart_Element(self):
+        "returns the element of the Cost of all items in cartIcon in the toolbar"
+        return self.driver.find_element(By.XPATH, "//tool-tip-cart[@id='toolTipCart']/div/table/tfoot/tr[1]/td[2]/span")
+
+    def ItemsTotalCostInCartDigits(self):
+       "returns Total cost of items in cartIcon "
+       return re.sub(r'[^0-9.]', '', self.Get_ItemsTotalCostInCart_Element().get_attribute("textContent"))
 
     def Get_CartIconCheckOut_Element(self):
         "returns the element of CheckOut button in the cartIcon in toolbar"
@@ -60,6 +67,13 @@ class ToolBarClass:
     def Get_CartIconItemInfo_Element(self,index:int):
         "returns the element of a spacifice item information from CartIcon in toolbar"
         return self.driver.find_element(By.XPATH,f"//tool-tip-cart/div/table/tbody/tr[{index}]/td[2]/a")
+    def Get_CartIconItemCost_Element(self,index:int):
+        "returns the element of a spacifice item Cost from CartIcon in toolbar"
+        return self.driver.find_element(By.XPATH,f"//tool-tip-cart/div/table/tbody/tr[{index}]/td[3]/p")
+
+    def CartIconItemCostDigits(self,index:int):
+        "returns Cost of specifice item in cartIcon "
+        return re.sub(r'[^0-9.]', '', self.Get_CartIconItemCost_Element(index).get_attribute("textContent"))
 
     def Get_CartIconItemName_Element(self,index:int):
         "returns the element of part of the name of a spacifice item from CartIcon in toolbar in format: xxxxxx..."
@@ -70,11 +84,16 @@ class ToolBarClass:
         return self.Get_CartIconItemInfo_Element(index).find_element(By.XPATH, "//a/label[1]")
 
     def CartIconQuntityDigits(self,index:int):
+        "returns Quantity of specifice item in cartIcon "
         return re.sub(r'[^0-9]','',self.Get_CartIconQuntity_Element(index).text)
 
     def Get_CartIconColor_Element(self,index:int):
         "returns the element of the item color of spacifice item in CartIcon in toolbar in form: all upper case letters"
         return self.Get_CartIconItemInfo_Element(index).find_element(By.XPATH, "//label[2]/span")
+
+    def Get_CartIconRemoveItem_Element(self,index:int):
+        "returns Element of remove button for specifice items in CartIcon ToolBar"
+        return self.driver.find_element(By.XPATH,f"//tool-tip-cart/div/table/tbody/tr[{index}]/td[3]/div/div")
 
     def Get_UserIconUsername_Element(self):
         "returns the element of the username after the UserIcon popup is Displayed"
