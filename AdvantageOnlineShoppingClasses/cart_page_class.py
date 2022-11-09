@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import re
-re.sub(r'[^0-9.]', '', self.units_price().text)
 
 
 class Cart_Page_Advantage:
@@ -48,4 +47,16 @@ class Cart_Page_Advantage:
         return re.sub(r'[^0-9.]', '', self.units_price(product_location).text)
 
     def edit_product_click(self, product_location: int):
-        self.edit_product()
+        self.edit_product(product_location).click()
+
+    def remove_product_click(self, product_location: int):
+        self.remove_product(product_location).click()
+
+    def total_price_text(self):
+        return re.sub(r'[^0-9.]', '', self.total_price().text)
+
+    def check_Out_Button_click(self):
+        self.check_Out_Button().click()
+
+    def continue_shopping_click(self):
+        self.continue_shopping().click()
