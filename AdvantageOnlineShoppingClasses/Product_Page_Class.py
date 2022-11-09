@@ -54,3 +54,9 @@ class ProductClass:
         "Clicks on ADDTOCARTBUTTON"
         self.Get_ADDTOCART_Element().click()
 
+    def Get_ProductStatus_Element(self):
+        return self.driver.find_element(By.CSS_SELECTOR,"span[translate='SOUL_OUT']")
+
+    def IsProductSoldOut(self):
+        return self.Get_ProductStatus_Element().is_displayed()
+

@@ -126,9 +126,9 @@ class ToolBarClass:
     def Get_UserIconCreateAccount_Element(self):
         "returns the element of the Create New Account button after the UserIcon popup is Displayed"
         if (self.driver.find_element(By.CLASS_NAME, "PopUp").is_displayed()):
-            return self.driver.find_element(By.CLASS_NAME, "create-new-account")
+            return self.driver.find_element(By.LINK_TEXT, "CREATE NEW ACCOUNT")
         self.Get_Usericon_Element().click()
-        return self.driver.find_element(By.CLASS_NAME, "create-new-account")
+        return self.driver.find_element(By.LINK_TEXT, "CREATE NEW ACCOUNT")
 
     def Get_UserIconSignOut_Element(self):
         "returns the element of the SignOut button after UserIcon was Pressed(User Must be Signed In for it to work)"
