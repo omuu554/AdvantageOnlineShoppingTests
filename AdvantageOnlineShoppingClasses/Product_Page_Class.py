@@ -56,7 +56,7 @@ class ProductClass:
 
 
     def IsProductNotSoldOut(self):
-        "Returns true if Product is not sold out"
+        "Returns true if Product is not sold out "
         try:
             self.Get_ProductQuantity_Element().click()
             return True
