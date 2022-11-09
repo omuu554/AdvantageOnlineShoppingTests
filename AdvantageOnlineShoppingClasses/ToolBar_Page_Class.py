@@ -39,7 +39,7 @@ class ToolBarClass:
         return self.driver.find_element(By.ID,"autoComplete")
 
     def Click_SearchBar(self):
-        "Presses Enter after the searchbar Has been Opened in the toolbar"
+        "Presses Enter after the searchbar Has been Opened in the toolbar!"
         SearchIconElement = self.Get_SearchBar_Element()
         SearchIconElement.send_keys(Keys.ENTER)
 

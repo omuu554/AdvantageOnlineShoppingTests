@@ -9,7 +9,7 @@ class ProductClass:
         self.driver = driver
 
     def Get_ProductName_Element(self):
-        "Returns the Element of the product name"
+        "Returns the Element of the product name!"
         return self.driver.find_element(By.CSS_SELECTOR, "#Description>h1")
 
     def Get_ProudctPrice_Element(self):
