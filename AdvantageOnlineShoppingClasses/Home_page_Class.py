@@ -32,13 +32,18 @@ class Home_Page_Advantage:
     def click_headphones(self):
         self.headphones_category().click()
 
-    def laptops_headphones(self):
+    def click_laptops(self):
         self.laptops_category().click()
 
-    def mice_headphones(self):
+    def click_mice(self):
         self.mice_category().click()
 
    
 
 
 
+    def category(self, category_name: str):
+        return self.driver.find_element(By.ID, f"{category_name}Img")
+
+    def click_category(self, category_name: str):
+        self.category(category_name).click()
